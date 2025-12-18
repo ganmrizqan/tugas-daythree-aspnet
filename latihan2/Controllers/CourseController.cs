@@ -16,9 +16,17 @@ namespace latihan2.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var courses = _context.Courses.Include(c => c.Student);
+            var courses = _context.Courses.Include(c => c.Student).AsQueryable();
+            
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                courses = courses.Where(c => c.Title.Contains(searchString));
+            }
+
+            courses = courses.OrderBy(c => c.Title);
+            
             return View(await courses.ToListAsync());
         }
 

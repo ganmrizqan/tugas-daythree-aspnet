@@ -11,6 +11,17 @@
     <a asp-controller="Student" asp-action="Create" class="btn btn-primary">Tambah Siswa Baru</a>
 </p>
 
+<form asp-action="Index" method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="searchString" class="form-control" placeholder="Cari nama Siswa..." />
+        <button type="submit" class="btn btn-outline-secondary">Cari</button>
+        <a asp-action="Index" class="btn btn-outline-danger">Reset</a>
+    </div>
+</form>
+
+
+
+
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr class="text-center">

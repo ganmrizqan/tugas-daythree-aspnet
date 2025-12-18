@@ -24,7 +24,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        ViewData["Message"] = "Welcome to the Book Library!";
+        ViewData["Message"] = "Welcome to the School Website!";
         return View();
     }
 

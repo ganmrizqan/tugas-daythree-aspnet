@@ -28,9 +28,18 @@ public class StudentController : Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string searchString)
     {
-        return View(await _context.Students.ToListAsync());
+        var students = _context.Students.AsQueryable();
+
+        if (!string.IsNullOrEmpty(searchString))
+        {
+            students = students.Where(s => s.Name.Contains(searchString));
+        }
+
+        students = students.OrderBy(s => s.Name);
+
+        return View(await students.ToListAsync());
     
     }
 
